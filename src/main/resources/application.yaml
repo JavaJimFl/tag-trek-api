@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: tag-trek
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tagtrek
+    username: tagtrek
+    password: tagtrek
+    jpa:
+      hibernate:
+        ddl-auto: update
