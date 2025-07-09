@@ -1,4 +1,4 @@
-package com.kaib.tag_trek;
+package com.kaib.tt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

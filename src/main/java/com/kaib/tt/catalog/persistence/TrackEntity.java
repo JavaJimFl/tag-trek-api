@@ -1,4 +1,4 @@
-package com.kaib.tag_trek.track;
+package com.kaib.tt.catalog.persistence;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * safe and testable business operations without exposing JPA entities directly.
  */
 @Entity
-public class TrackDto {
+public class TrackEntity {
 
   /**
    * The artist who recorded the track.
@@ -41,9 +41,9 @@ public class TrackDto {
   private String title;
 
   /**
-   * Instantiates a new Track instance.
+   * Instantiates a new Track entity instance.
    */
-  public TrackDto() {
+  public TrackEntity() {
     super();
   }
 
@@ -112,7 +112,7 @@ public class TrackDto {
     if (other == null || this.getClass() != other.getClass()) {
       return false;
     }
-    final var that = (TrackDto) other;
+    final var that = (TrackEntity) other;
     return new EqualsBuilder()
     .append(this.artist, that.artist)
     .append(this.title, that.title)

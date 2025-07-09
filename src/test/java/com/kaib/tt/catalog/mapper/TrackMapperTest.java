@@ -1,5 +1,8 @@
-package com.kaib.tag_trek.track;
+package com.kaib.tt.catalog.mapper;
 
+import com.kaib.tt.catalog.domain.Track;
+import com.kaib.tt.catalog.persistence.TrackEntity;
+import com.kaib.tt.support.test.TrackMother;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +23,7 @@ public class TrackMapperTest {
   /**
    * The test Track DTO instance.
    */
-  private TrackDto testTrackDto;
+  private TrackEntity testTrackEntity;
 
   /**
    * The unit under test.
@@ -34,20 +37,20 @@ public class TrackMapperTest {
   public void setUp() {
 
     this.testTrack = TrackMother.defaultTrack();
-    this.testTrackDto = TrackMother.defaultTrackDto();
+    this.testTrackEntity = TrackMother.defaultTrackEntity();
 
     this.uut = new TrackMapperImpl();
   }
 
   @Test
-  @DisplayName("Verify that the TrackMapper converts a TrackDto to a Track correctly")
-  public void testDtoToTrack1() {
+  @DisplayName("Verify that the TrackMapper converts a TrackEntity to a Track correctly")
+  public void testFromTrackEntity1() {
 
     // Arrange.
     final Track expected = TrackMother.defaultTrack();
 
     // Act.
-    final var actual = this.uut.toTrack(this.testTrackDto);
+    final var actual = this.uut.from(this.testTrackEntity);
 
     // Assert.
     Assertions.assertThat(actual)
@@ -56,14 +59,14 @@ public class TrackMapperTest {
   }
 
   @Test
-  @DisplayName("Verify that the TrackMapper converts a Track to a TrackDto correctly")
-  public void testTrackToDto1() {
+  @DisplayName("Verify that the TrackMapper converts a Track to a TrackEntity correctly")
+  public void testFromTrack1() {
 
     // Arrange.
-    final TrackDto expected = TrackMother.defaultTrackDto();
+    final TrackEntity expected = TrackMother.defaultTrackEntity();
 
     // Act.
-    final TrackDto actual = this.uut.fromTrack(this.testTrack);
+    final TrackEntity actual = this.uut.from(this.testTrack);
 
     // Assert.
     Assertions.assertThat(actual)

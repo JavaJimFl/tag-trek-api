@@ -1,5 +1,7 @@
-package com.kaib.tag_trek.track;
+package com.kaib.tt.catalog.mapper;
 
+import com.kaib.tt.catalog.domain.Track;
+import com.kaib.tt.catalog.persistence.TrackEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Javadoc;
@@ -22,19 +24,19 @@ import org.mapstruct.MappingConstants;
 public interface TrackMapper {
 
   /**
-   * Converts a {@link TrackDto} to a {@link Track}.
+   * Converts a {@link TrackEntity} to a {@link Track}.
    *
-   * @param trackDto the DTO to convert
+   * @param trackEntity the DTO to convert
    * @return the converted Track
    */
-  Track toTrack(TrackDto trackDto);
+  Track from(TrackEntity trackEntity);
 
   /**
-   * Converts a {@link Track} to a {@link TrackDto}.
+   * Converts a {@link Track} to a {@link TrackEntity}.
    *
    * @param track the Track to convert
    * @return the converted TrackDto
    */
   @InheritInverseConfiguration
-  TrackDto fromTrack(Track track);
+  TrackEntity from(Track track);
 }

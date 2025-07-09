@@ -1,4 +1,4 @@
-package com.kaib.tag_trek.track;
+package com.kaib.tt.catalog.domain;
 
 /**
  * Record that represents an album track.  Typically, a song.

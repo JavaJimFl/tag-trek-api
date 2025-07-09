@@ -1,18 +1,18 @@
-package com.kaib.tag_trek.track;
+package com.kaib.tt.catalog.domain;
 
 
 import com.jparams.verifier.tostring.ToStringVerifier;
+import com.kaib.tt.support.test.TrackMother;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class TrackTest {
 
   /**
-   * The unit under test
+   * The unit under test.
    */
   private Track uut;
 

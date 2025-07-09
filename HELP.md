@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.kaib.tag-trek' is invalid and this project uses 'com.kaib.tag_trek' instead.
+* The original package name 'com.kaib.tag-trek' is invalid and this project uses 'com.kaib.tt' instead.
 
 # Getting Started
 

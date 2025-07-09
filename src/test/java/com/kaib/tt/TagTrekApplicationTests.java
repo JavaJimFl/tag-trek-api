@@ -1,4 +1,4 @@
-package com.kaib.tag_trek;
+package com.kaib.tt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

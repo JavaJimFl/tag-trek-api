@@ -1,6 +1,7 @@
-package com.kaib.tag_trek.track;
+package com.kaib.tt.catalog.persistence;
 
 import com.jparams.verifier.tostring.ToStringVerifier;
+import com.kaib.tt.support.test.TrackMother;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 import org.assertj.core.api.Assertions;
@@ -9,27 +10,28 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
- * Performs automated tests on the {@link TrackDto} class.
+ * Performs automated tests on the {@link TrackEntity} class.
  *
  * @author Jim Kaib
  */
-public class TrackDtoTest {
+public class TrackEntityTest {
 
   /**
    * The unit under test.
    */
-  private TrackDto uut;
+  private TrackEntity uut;
 
   /**
    * Sets up the test fixture prior to each test.
    */
   @BeforeEach
   void setUp() {
-    this.uut = TrackMother.defaultTrackDto();
+
+    this.uut = TrackMother.defaultTrackEntity();
   }
 
   @Test
-  @DisplayName("Verify that the artist getter and setting are wired correctly")
+  @DisplayName("Verify that the artist getter and setter are wired correctly")
   void testGetArtist1() {
 
     // Arrange.
@@ -40,12 +42,12 @@ public class TrackDtoTest {
 
     // Assert.
     Assertions.assertThat(actual)
-        .as("The artist getter and setting weren't wired correctly")
+        .as("The artist getter and setter weren't wired correctly")
         .isEqualTo(expected);
   }
 
   @Test
-  @DisplayName("Verify that the ID getter and setting are wired correctly")
+  @DisplayName("Verify that the ID getter and setter are wired correctly")
   void testGetId1() {
 
     // Arrange.
@@ -56,12 +58,12 @@ public class TrackDtoTest {
 
     // Assert.
     Assertions.assertThat(actual)
-        .as("The ID getter and setting weren't wired correctly")
+        .as("The ID getter and setter weren't wired correctly")
         .isEqualTo(expected);
   }
 
   @Test
-  @DisplayName("Verify that the title getter and setting are wired correctly")
+  @DisplayName("Verify that the title getter and setter are wired correctly")
   void testGetTitle1() {
 
     // Arrange.
@@ -72,7 +74,7 @@ public class TrackDtoTest {
 
     // Assert.
     Assertions.assertThat(actual)
-        .as("The title getter and setting weren't wired correctly")
+        .as("The title getter and setter weren't wired correctly")
         .isEqualTo(expected);
   }
 
@@ -80,7 +82,7 @@ public class TrackDtoTest {
   @DisplayName("Verify object equality")
   void testEquals1() {
 
-    EqualsVerifier.forClass(TrackDto.class)
+    EqualsVerifier.forClass(TrackEntity.class)
         .usingGetClass()
         .suppress(Warning.INHERITED_DIRECTLY_FROM_OBJECT)
         .verify();
@@ -90,6 +92,6 @@ public class TrackDtoTest {
   @DisplayName("Verify the toString output is correct")
   void testToString1() {
 
-    ToStringVerifier.forClass(TrackDto.class).verify();
+    ToStringVerifier.forClass(TrackEntity.class).verify();
   }
 }
