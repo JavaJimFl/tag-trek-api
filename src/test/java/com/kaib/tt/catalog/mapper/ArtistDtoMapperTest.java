@@ -1,10 +1,9 @@
 package com.kaib.tt.catalog.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.kaib.tt.catalog.domain.Artist;
 import com.kaib.tt.support.test.ArtistMother;
 import com.kaib.tt.catalog.dto.ArtistDto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,6 +53,25 @@ final class ArtistDtoMapperTest {
     final var actual = this.uut.from(this.testArtist);
 
     // Assert.
-    assertEquals(expected, actual, "The ArtistDtoMapper did not convert the Artist to an ArtistDto correctly");
+    Assertions.assertThat(actual)
+        .as("The ArtistDtoMapper did not convert the Artist to an ArtistDto correctly")
+        .isEqualTo(expected);
+  }
+
+  @Test
+  @DisplayName("Verify a NullPointerException is thrown when the artist to map is null")
+  void testFromArtist2() {
+
+    // Arrange.
+    final String expected = "The artist can't be null";
+
+    // Act.
+    final Throwable actual = Assertions.catchThrowable(() -> this.uut.from(null));
+
+    // Assert.
+    Assertions.assertThat(actual)
+        .as("A NullPointerException should have been thrown when the artist to map was null")
+        .isInstanceOf(NullPointerException.class)
+        .hasMessageContaining(expected);
   }
 }

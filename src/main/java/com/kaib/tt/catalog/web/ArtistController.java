@@ -73,7 +73,7 @@ public class ArtistController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<EntityModel<ArtistDto>> getArtist(@PathVariable @NotNull final UUID id) {
+  public ResponseEntity<EntityModel<ArtistDto>> getArtist(@PathVariable final UUID id) {
 
     return this.artistService.findById(id).map(artist ->
     {

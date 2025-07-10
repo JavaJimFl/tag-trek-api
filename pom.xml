@@ -98,6 +98,12 @@
       <version>1.4.8</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.pitest</groupId>
+      <artifactId>pitest-junit5-plugin</artifactId>
+      <version>1.1.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -121,6 +127,111 @@
             </path>
             <!-- other annotation processors -->
           </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+
+      <!-- ✅ Unit + slice tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+      </plugin>
+
+      <!-- ✅ Integration tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.2.5</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- ✅ JaCoCo for code coverage -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.11</version>
+        <executions>
+          <!-- Runs after unit tests -->
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <!-- Creates the report after both surefire + failsafe -->
+          <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.15.0</version>
+        <configuration>
+          <!-- Optional: Skip PIT unless explicitly run -->
+<!--          <skip>true</skip>-->
+
+          <!-- Target classes to mutate -->
+          <targetClasses>
+            <param>com.kaib.tt.*</param>
+          </targetClasses>
+
+          <!-- Test classes to run -->
+          <targetTests>
+            <param>com.kaib.tt.*</param>
+          </targetTests>
+
+          <!-- Avoid mutating Lombok-generated code or bytecode weirdness -->
+          <excludedMethods>
+            <param>hashCode</param>
+            <param>equals</param>
+            <param>toString</param>
+          </excludedMethods>
+
+          <!-- Use modern engine -->
+          <mutators>
+            <mutator>STRONGER</mutator>
+            <mutator>CONSTRUCTOR_CALLS</mutator>
+            <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
+            <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
+            <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
+<!--            <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>-->
+            <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
+            <mutator>EXPERIMENTAL_SWITCH</mutator>
+            <mutator>NON_VOID_METHOD_CALLS</mutator>
+            <mutator>REMOVE_CONDITIONALS_EQUAL_ELSE</mutator>
+            <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
+            <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
+            <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
+            <mutator>REMOVE_INCREMENTS</mutator>
+          </mutators>
+
+          <!-- Avoid mutating generated code -->
+          <excludedClasses>
+            <param>*.Dto</param>
+            <param>*.Request</param>
+            <param>*.Response</param>
+            <param>com.kaib.tt.TagTrekApplication*</param>
+            <param>*.*MapperImpl</param>
+          </excludedClasses>
+
+          <!-- Output HTML report -->
+          <outputFormats>
+            <outputFormat>HTML</outputFormat>
+          </outputFormats>
         </configuration>
       </plugin>
     </plugins>

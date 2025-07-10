@@ -3,6 +3,7 @@ package com.kaib.tt.catalog.mapper;
 import com.kaib.tt.catalog.domain.Artist;
 import com.kaib.tt.catalog.domain.ArtistId;
 import com.kaib.tt.catalog.persistence.ArtistEntity;
+import org.apache.commons.lang3.Validate;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -23,9 +24,7 @@ public interface ArtistEntityMapper {
    */
   default Artist from(ArtistEntity artistEntity) {
 
-    if (artistEntity == null) {
-      return null;
-    }
+    Validate.notNull(artistEntity, "The artist entity can't be null");
 
     return new Artist(new ArtistId(artistEntity.getId()), artistEntity.getName());
   }
@@ -38,9 +37,8 @@ public interface ArtistEntityMapper {
    */
   @InheritInverseConfiguration
   default ArtistEntity from(Artist artist) {
-    if (artist == null) {
-      return null;
-    }
+
+    Validate.notNull(artist, "The artist can't be null");
 
     final var artistEntity = new ArtistEntity();
     artistEntity.setId(artist.artistId().id());

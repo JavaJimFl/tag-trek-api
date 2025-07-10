@@ -32,10 +32,18 @@ public class ArtistMother {
   public static final String TEST_ARTIST_NAME = "testArtistName";
 
   /**
+   * The default test artist ID string value.
+   */
+  public static final String TEST_ARTIST_UUID_STR = "739a956e-d67b-40fc-94e2-03f35425fb0c";
+
+  /**
    * The default test artist ID.
    */
-  public static final UUID TEST_ARTIST_UUID =  UUID.fromString("739a956e-d67b-40fc-94e2-03f35425fb0c");
+  public static final UUID TEST_ARTIST_UUID =  UUID.fromString(TEST_ARTIST_UUID_STR);
 
+  /**
+   * The default test artist ID object.
+   */
   public static final ArtistId TEST_ARTIST_ID_OBJECT = new ArtistId(TEST_ARTIST_UUID);
 
   /**
@@ -43,7 +51,7 @@ public class ArtistMother {
    *
    * @return a new {@link Builder} instance
    */
-  static Builder builder() {
+  public static Builder builder() {
 
     return new Builder();
   }
@@ -60,7 +68,7 @@ public class ArtistMother {
 
   public static CreateArtistRequest defaultCreateArtistRequest() {
 
-    return builder().buildDefaultCreateArtistRequest();
+    return builder().buildCreateArtistRequest();
   }
 
   /**
@@ -70,7 +78,7 @@ public class ArtistMother {
    */
   public static Artist defaultArtist() {
 
-    return builder().buildDefaultArtist();
+    return builder().buildArtist();
   }
 
   /**
@@ -80,13 +88,13 @@ public class ArtistMother {
    */
   public static ArtistDto defaultArtistDto() {
 
-    return builder().buildDefaultDto();
+    return builder().buildArtistDto();
   }
 
   /**
    * Builder class for constructing {@link ArtistEntity} and {@link Artist} objects with customizable properties.
    */
-  static class Builder {
+  public static class Builder {
 
     /**
      * The test artist name.
@@ -119,9 +127,9 @@ public class ArtistMother {
      *
      * @return the current {@link Builder} instance for method chaining
      */
-    public Builder withId(final UUID newId) {
+    public Builder withArtistId(final ArtistId newId) {
 
-      this.id = newId;
+      this.artistId = newId;
       return this;
     }
 
@@ -144,7 +152,7 @@ public class ArtistMother {
      *
      * @return a new {@link ArtistDto} instance
      */
-    public ArtistDto buildDefaultDto() {
+    public ArtistDto buildArtistDto() {
 
       final var artistDto = new ArtistDto();
       artistDto.setName(name);
@@ -158,7 +166,7 @@ public class ArtistMother {
      *
      * @return a new {@link Artist} instance
      */
-    public Artist buildDefaultArtist() {
+    public Artist buildArtist() {
 
       return new Artist(this.artistId, this.name);
     }
@@ -168,7 +176,7 @@ public class ArtistMother {
      *
      * @return a new {@link CreateArtistRequest} instance
      */
-    public CreateArtistRequest buildDefaultCreateArtistRequest() {
+    public CreateArtistRequest buildCreateArtistRequest() {
 
       return new CreateArtistRequest(this.name);
     }

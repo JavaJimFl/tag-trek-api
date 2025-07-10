@@ -4,9 +4,9 @@ import com.kaib.tt.catalog.domain.Artist;
 import com.kaib.tt.catalog.mapper.ArtistEntityMapper;
 import com.kaib.tt.catalog.persistence.ArtistEntity;
 import com.kaib.tt.catalog.persistence.ArtistRepository;
-import jakarta.validation.Valid;
 import java.util.Optional;
 import java.util.UUID;
+import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,7 +52,10 @@ public class ArtistService {
    * @return the created Artist
    */
   @Transactional
-  public Artist create(@Valid Artist artist) {
+  public Artist create(final Artist artist) {
+
+    Validate.notNull(artist, "The artist can't be null");
+    Validate.notBlank(artist.name(), "The artist name can't be null, empty, or blank");
 
     final ArtistEntity artistEntity = this.entityMapper.from(artist);
     final ArtistEntity saved = this.repository.save(artistEntity);
@@ -68,6 +71,8 @@ public class ArtistService {
    */
   @Transactional(readOnly = true)
   public Optional<Artist> findById(final UUID id) {
+
+    Validate.notNull(id, "The artist ID can't be null");
 
     final Optional<ArtistEntity> entity = this.repository.findById(id);
 
