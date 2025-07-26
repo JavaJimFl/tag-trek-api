@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jim Kaib
  */
-public class TrackEntityTest {
+final class TrackEntityTest {
 
   /**
    * The unit under test.

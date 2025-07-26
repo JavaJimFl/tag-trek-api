@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jim Kaib
  */
-public class TrackMapperTest {
+final class TrackMapperTest {
 
   /**
    * The test Track instance.
@@ -34,7 +34,7 @@ public class TrackMapperTest {
    * Sets up the test fixture prior to each test.
    */
   @BeforeEach
-  public void setUp() {
+  void setUp() {
 
     this.testTrack = TrackMother.defaultTrack();
     this.testTrackEntity = TrackMother.defaultTrackEntity();
@@ -44,7 +44,7 @@ public class TrackMapperTest {
 
   @Test
   @DisplayName("Verify that the TrackMapper converts a TrackEntity to a Track correctly")
-  public void testFromTrackEntity1() {
+  void testFromTrackEntity1() {
 
     // Arrange.
     final Track expected = TrackMother.defaultTrack();
@@ -60,7 +60,7 @@ public class TrackMapperTest {
 
   @Test
   @DisplayName("Verify that the TrackMapper converts a Track to a TrackEntity correctly")
-  public void testFromTrack1() {
+  void testFromTrack1() {
 
     // Arrange.
     final TrackEntity expected = TrackMother.defaultTrackEntity();

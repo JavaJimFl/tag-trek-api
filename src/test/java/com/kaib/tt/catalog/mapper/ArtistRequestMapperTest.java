@@ -44,7 +44,7 @@ final class ArtistRequestMapperTest {
 
   @Test
   @DisplayName("Verify that the CreateArtistRequestMapper maps the AristId in AN ArtistRequest to an Artist correctly")
-  public void testFromCreateArtistRequest1() {
+  void testFromCreateArtistRequest1() {
 
     // Arrange.
     final String expected = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$";
@@ -62,7 +62,7 @@ final class ArtistRequestMapperTest {
   @Test
   @DisplayName("Verify that the CreateArtistRequestMapper maps the ArtistName in an ArtistRequest to an Artist"
       + " correctly")
-  public void testFromCreateArtistRequest2() {
+  void testFromCreateArtistRequest2() {
 
     // Arrange.
     final String expected = this.testCreateArtistRequest.name();

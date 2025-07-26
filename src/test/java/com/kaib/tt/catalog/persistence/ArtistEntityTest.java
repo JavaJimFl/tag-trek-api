@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jim Kaib
  */
-public class ArtistEntityTest {
+final class ArtistEntityTest {
 
   /**
    * The unit under test.

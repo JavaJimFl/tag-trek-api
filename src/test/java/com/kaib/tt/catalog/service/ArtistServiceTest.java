@@ -30,7 +30,7 @@ final class ArtistServiceTest {
    * The mock that simulates the behavior of the artist repository.
    */
   @Mock
-  private ArtistRepository MockArtistRepository;
+  private ArtistRepository mockArtistRepository;
 
   /**
    * The test artist.
@@ -61,7 +61,7 @@ final class ArtistServiceTest {
     this.testArtist = ArtistMother.defaultArtist();
     this.testArtistEntity = ArtistMother.defaultArtistEntity();
     this.testArtistEntityMapper = new ArtistEntityMapperImpl();
-    this.uut = new ArtistService(this.MockArtistRepository, this.testArtistEntityMapper);
+    this.uut = new ArtistService(this.mockArtistRepository, this.testArtistEntityMapper);
   }
 
   @Test
@@ -106,7 +106,7 @@ final class ArtistServiceTest {
 
     // Arrange.
     final var expected = this.testArtist;
-    Mockito.when(this.MockArtistRepository.save(this.testArtistEntity))
+    Mockito.when(this.mockArtistRepository.save(this.testArtistEntity))
         .thenReturn(this.testArtistEntity);
 
     // Act.
@@ -143,7 +143,7 @@ final class ArtistServiceTest {
     final var testArtistId = ArtistMother.TEST_ARTIST_UUID;
     final var expected = Optional.of(this.testArtist);
     final var expectedArtistEntity = this.testArtistEntity;
-    Mockito.when(this.MockArtistRepository.findById(testArtistId))
+    Mockito.when(this.mockArtistRepository.findById(testArtistId))
         .thenReturn(Optional.of(expectedArtistEntity));
 
     // Act.
@@ -161,7 +161,7 @@ final class ArtistServiceTest {
 
     // Arrange.
     final var testArtistId = ArtistMother.TEST_ARTIST_UUID;
-    Mockito.when(this.MockArtistRepository.findById(testArtistId))
+    Mockito.when(this.mockArtistRepository.findById(testArtistId))
         .thenReturn(Optional.empty());
 
     // Act.

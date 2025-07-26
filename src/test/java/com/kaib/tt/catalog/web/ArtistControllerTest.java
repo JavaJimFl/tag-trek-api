@@ -34,7 +34,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
  */
 @AutoConfigureMockMvc
 @WebMvcTest(ArtistController.class)
-class ArtistControllerTest {
+final class ArtistControllerTest {
 
   /**
    * The mock Spring Model-View-Controller (MVC) instance used to perform requests and verify responses.
