@@ -64,7 +64,7 @@ public class ArtistService {
     Validate.notNull(artist, "The artist can't be null");
     Validate.notBlank(artist.name(), "The artist name can't be null, empty, or blank");
 
-    final ArtistEntity artistEntity = this.entityMapper.from(artist);
+    final var artistEntity = this.entityMapper.from(artist);
     final ArtistEntity saved = this.repository.save(artistEntity);
 
     return this.entityMapper.from(saved);

@@ -3,6 +3,7 @@ package com.kaib.tt.catalog.mapper;
 import com.kaib.tt.catalog.domain.Artist;
 import com.kaib.tt.catalog.persistence.ArtistEntity;
 import com.kaib.tt.support.test.ArtistMother;
+import java.util.UUID;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -64,10 +65,10 @@ final class ArtistEntityMapperTest {
   void testFromArtistEntity2() {
 
     // Arrange.
-    final var expected = this.testArtist;
+    final Artist expected = this.testArtist;
 
     // Act.
-    final var actual = this.uut.from(this.testArtistEntity);
+    final Artist actual = this.uut.from(this.testArtistEntity);
 
     // Assert.
     Assertions.assertThat(actual)
@@ -97,10 +98,10 @@ final class ArtistEntityMapperTest {
   void testFromArtist2() {
 
     // Arrange.
-    final var expected = this.testArtistEntity;
+    final ArtistEntity expected = this.testArtistEntity;
 
     // Act.
-    final var actual = this.uut.from(this.testArtist);
+    final ArtistEntity actual = this.uut.from(this.testArtist);
 
     // Assert.
     Assertions.assertThat(actual)
@@ -111,13 +112,13 @@ final class ArtistEntityMapperTest {
   // The arist ID doesn't participate in the equality check, so we need to test it separately.
   @Test
   @DisplayName("Verify the artist ID is mapped correctly")
-  void setTestArtist3() {
+  void testArtist3() {
 
     // Arrange.
-    final var expected = ArtistMother.TEST_ARTIST_UUID;
+    final UUID expected = ArtistMother.TEST_ARTIST_UUID;
 
     // Act.
-    final var actual = this.uut.from(this.testArtist).getId();
+    final UUID actual = this.uut.from(this.testArtist).getId();
 
     // Assert.
     Assertions.assertThat(actual)

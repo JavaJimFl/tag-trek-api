@@ -16,6 +16,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+/**
+ * Represents an artist in the catalog.
+ * <p>
+ * This entity is used to store artist information in the database.
+ * It includes a unique identifier and the artist's attributes such as name.
+ */
 @Entity
 public class ArtistEntity {
 

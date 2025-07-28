@@ -11,12 +11,23 @@ import com.kaib.tt.catalog.domain.Artist;
 import com.kaib.tt.catalog.domain.ArtistId;
 import com.kaib.tt.catalog.web.request.CreateArtistRequest;
 import org.mapstruct.InjectionStrategy;
+import org.mapstruct.Javadoc;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
+/**
+ * MapStruct mapper for converting between {@link Artist} and {@link CreateArtistRequest} instances.
+ *
+ * @author Jim Kaib
+ */
+@Javadoc("""
+    Mapper that converts between {@link Artist} and {@link CreateArtistRequest} instances.
+    
+    @author Jim Kaib
+    """
+)
 @Mapper(
     componentModel = MappingConstants.ComponentModel.SPRING,
-    uses = {ArtistRequestMapper.class},
     injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 public interface ArtistRequestMapper {

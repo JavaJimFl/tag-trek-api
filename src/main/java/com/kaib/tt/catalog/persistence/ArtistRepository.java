@@ -10,6 +10,13 @@ package com.kaib.tt.catalog.persistence;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * Repository interface for managing ArtistEntity objects.
+ *
+ * <p>Provides methods to perform CRUD operations on artists.
+ *
+ * @author Jim Kaib, Jr.
+ */
 public interface ArtistRepository extends JpaRepository<ArtistEntity, UUID> {
 
 }

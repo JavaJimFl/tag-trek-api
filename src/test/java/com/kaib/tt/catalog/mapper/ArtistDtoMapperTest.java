@@ -47,10 +47,10 @@ final class ArtistDtoMapperTest {
   void testFromArtist1() {
 
     // Arrange.
-    final var expected = this.testArtistDto;
+    final ArtistDto expected = this.testArtistDto;
 
     // Act.
-    final var actual = this.uut.from(this.testArtist);
+    final ArtistDto actual = this.uut.from(this.testArtist);
 
     // Assert.
     Assertions.assertThat(actual)

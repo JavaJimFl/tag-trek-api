@@ -9,6 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Performs automated unit tests on the {@link Track} class.
+ *
+ * @author Jim Kaib, Jr.
+ */
 class TrackTest {
 
   /**

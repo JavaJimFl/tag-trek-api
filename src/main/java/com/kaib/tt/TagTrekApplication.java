@@ -10,9 +10,20 @@ package com.kaib.tt;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * The main application class for the TagTrek application.
+ * <p>
+ * This class serves as the entry point for the Spring Boot application.
+ * </p>
+ */
 @SpringBootApplication
 public class TagTrekApplication {
 
+  /**
+   * The main method that starts the Spring Boot application.
+   *
+   * @param args command line arguments (not used)
+   */
   public static void main(String[] args) {
     SpringApplication.run(TagTrekApplication.class, args);
   }

@@ -1,16 +1,25 @@
 package com.kaib.tt;
 
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@Disabled
+/**
+ * Performs automated tests on the {@link TagTrekApplication} class.
+ *
+ * <p>This class is used to verify that the Spring application context loads correctly.
+ *
+ * @author Jim Kaib, Jr.
+ */
 @SpringBootTest
 class TagTrekApplicationTests {
 
-  @Disabled
+
+  @DisplayName("Verify that the Spring application context loads correctly")
   @Test
-  void contextLoads() {
+  void testContextLoads() {
+    // This test will pass if the application context loads successfully.
+    // No additional assertions are needed.
   }
 
 }

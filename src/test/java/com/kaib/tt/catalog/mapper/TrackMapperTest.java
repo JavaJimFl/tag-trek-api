@@ -50,7 +50,7 @@ final class TrackMapperTest {
     final Track expected = TrackMother.defaultTrack();
 
     // Act.
-    final var actual = this.uut.from(this.testTrackEntity);
+    final Track actual = this.uut.from(this.testTrackEntity);
 
     // Assert.
     Assertions.assertThat(actual)

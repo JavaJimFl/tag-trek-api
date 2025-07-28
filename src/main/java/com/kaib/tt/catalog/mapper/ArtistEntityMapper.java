@@ -13,12 +13,23 @@ import com.kaib.tt.catalog.persistence.ArtistEntity;
 import org.apache.commons.lang3.Validate;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.InjectionStrategy;
+import org.mapstruct.Javadoc;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
+/**
+ * MapStruct mapper for converting between {@link Artist} and {@link ArtistEntity} instances.
+ *
+ * @author Jim Kaib
+ */
+@Javadoc("""
+    Mapper that converts between {@link Artist} and {@link ArtistEntity} instances.
+    
+    @author Jim Kaib
+    """
+)
 @Mapper(
     componentModel = MappingConstants.ComponentModel.SPRING,
-    uses = {ArtistEntityMapper.class},
     injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 public interface ArtistEntityMapper {
@@ -52,5 +63,5 @@ public interface ArtistEntityMapper {
     artistEntity.setName(artist.name());
 
     return artistEntity;
-  };
+  }
 }

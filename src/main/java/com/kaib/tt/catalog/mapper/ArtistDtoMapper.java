@@ -10,17 +10,23 @@ package com.kaib.tt.catalog.mapper;
 import com.kaib.tt.catalog.domain.Artist;
 import com.kaib.tt.catalog.dto.ArtistDto;
 import org.apache.commons.lang3.Validate;
+import org.mapstruct.Javadoc;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
 /**
- * Maps {@link Artist} domain objects to {@link ArtistDto} data transfer objects.
+ * MapStruct mapper for converting between {@link Artist} and {@link ArtistDto} instances.
  *
  * @author Jim Kaib
  */
+@Javadoc("""
+    Mapper that converts between {@link Artist} and {@link ArtistDto} instances.
+    
+    @author Jim Kaib
+    """
+)
 @Mapper(
     componentModel = MappingConstants.ComponentModel.SPRING,
-    uses = {ArtistDtoMapper.class},
     injectionStrategy = org.mapstruct.InjectionStrategy.CONSTRUCTOR
 )
 public interface ArtistDtoMapper {

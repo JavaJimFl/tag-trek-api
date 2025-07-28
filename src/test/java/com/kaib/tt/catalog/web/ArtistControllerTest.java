@@ -1,12 +1,5 @@
 package com.kaib.tt.catalog.web;
 
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kaib.tt.catalog.domain.Artist;
 import com.kaib.tt.catalog.dto.ArtistDto;
@@ -20,12 +13,14 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 /**
  * Performs automated tests on the {@link ArtistController} class.
@@ -112,15 +107,16 @@ final class ArtistControllerTest {
     final var expectedArtistName = ArtistMother.TEST_ARTIST_NAME;
     final var expectedArtistId = ArtistMother.TEST_ARTIST_UUID_STR;
     final var expectedHateoasLink = "http://localhost/artists/739a956e-d67b-40fc-94e2-03f35425fb0c";
-    given(this.mockArtistService.findById(this.testArtistId)).willReturn(Optional.of(this.testArtistCreated));
-    given(this.mockArtistDtoMapper.from(this.testArtistCreated)).willReturn(this.testArtistDto);
+    BDDMockito.given(this.mockArtistService.findById(this.testArtistId))
+        .willReturn(Optional.of(this.testArtistCreated));
+    BDDMockito.given(this.mockArtistDtoMapper.from(this.testArtistCreated)).willReturn(this.testArtistDto);
 
     // When/Then.
-    mockMvc.perform(get("/artists/{id}", this.testArtistId))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.name").value(expectedArtistName))
-        .andExpect(jsonPath("$.id").value(expectedArtistId))
-        .andExpect(jsonPath("$._links.self.href").value(expectedHateoasLink));
+    mockMvc.perform(MockMvcRequestBuilders.get("/artists/{id}", this.testArtistId))
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedArtistName))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(expectedArtistId))
+        .andExpect(MockMvcResultMatchers.jsonPath("$._links.self.href").value(expectedHateoasLink));
   }
 
   @Test
@@ -128,12 +124,11 @@ final class ArtistControllerTest {
   void testGetArtist2() throws Exception {
 
     // Given.
-    final var expectedArtistId = ArtistMother.TEST_ARTIST_UUID_STR;
-    given(this.mockArtistService.findById(this.testArtistId)).willReturn(Optional.empty());
+    BDDMockito.given(this.mockArtistService.findById(this.testArtistId)).willReturn(Optional.empty());
 
     // When/Then.
     mockMvc.perform(MockMvcRequestBuilders.get("/artists/{id}", this.testArtistId))
-        .andExpect(status().isNotFound());
+        .andExpect(MockMvcResultMatchers.status().isNotFound());
   }
 
   @Test
@@ -145,19 +140,16 @@ final class ArtistControllerTest {
 
     // When/Then.
     mockMvc.perform(MockMvcRequestBuilders.get("/artists/{id}", invalidArtistId))
-        .andExpect(status().isBadRequest());
+        .andExpect(MockMvcResultMatchers.status().isBadRequest());
   }
 
   @Test
   @DisplayName("Verify that the ArtistController returns a 400 when creating an artist and the artist ID is blank")
   void testCreateArtist1() throws Exception {
 
-    // Given.
-    final String testArtistId = " ";
-
     // When/Then.
     mockMvc.perform(MockMvcRequestBuilders.post("/artists", testArtistId))
-        .andExpect(status().isBadRequest());
+        .andExpect(MockMvcResultMatchers.status().isBadRequest());
   }
 
   @Test
@@ -168,18 +160,18 @@ final class ArtistControllerTest {
     final var expectedArtistName = ArtistMother.TEST_ARTIST_NAME;
     final var expectedArtistId = ArtistMother.TEST_ARTIST_UUID_STR;
     final var expectedHateoasLink = "http://localhost/artists/739a956e-d67b-40fc-94e2-03f35425fb0c";
-    given(this.mockArtistRequestMapper.from(this.testCreateArtistRequest)).willReturn(this.testArtistInput);
-    given(this.mockArtistService.create(this.testArtistInput)).willReturn(this.testArtistCreated);
-    given(this.mockArtistDtoMapper.from(this.testArtistCreated)).willReturn(this.testArtistDto);
+    BDDMockito.given(this.mockArtistRequestMapper.from(this.testCreateArtistRequest)).willReturn(this.testArtistInput);
+    BDDMockito.given(this.mockArtistService.create(this.testArtistInput)).willReturn(this.testArtistCreated);
+    BDDMockito.given(this.mockArtistDtoMapper.from(this.testArtistCreated)).willReturn(this.testArtistDto);
 
     // When/Then.
-    mockMvc.perform(post("/artists")
+    mockMvc.perform(MockMvcRequestBuilders.post("/artists")
             .contentType("application/json")
             .content(this.objectMapper.writeValueAsString(this.testCreateArtistRequest)))
-        .andExpect(status().isCreated())
-        .andExpect(header().string("Location", expectedHateoasLink))
-        .andExpect(jsonPath("$.name").value(expectedArtistName))
-        .andExpect(jsonPath("$.id").value(expectedArtistId))
-        .andExpect(jsonPath("$._links.self.href").value(expectedHateoasLink));
+        .andExpect(MockMvcResultMatchers.status().isCreated())
+        .andExpect(MockMvcResultMatchers.header().string("Location", expectedHateoasLink))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedArtistName))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(expectedArtistId))
+        .andExpect(MockMvcResultMatchers.jsonPath("$._links.self.href").value(expectedHateoasLink));
   }
 }

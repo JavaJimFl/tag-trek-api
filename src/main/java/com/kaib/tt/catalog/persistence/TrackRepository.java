@@ -9,6 +9,13 @@ package com.kaib.tt.catalog.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * Repository interface for managing TrackEntity objects.
+ *
+ * <p>Provides methods to perform CRUD operations on tracks.
+ *
+ * @author Jim Kaib, Jr.
+ */
 public interface TrackRepository extends JpaRepository<TrackEntity, Long> {
 
 }

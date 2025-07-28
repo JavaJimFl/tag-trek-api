@@ -15,17 +15,19 @@ import org.mapstruct.Javadoc;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
-@Javadoc(
-    """
-    Mapper interface for converting between {@link TrackDto} and {@link Track}.
-    This interface uses MapStruct to generate the implementation at compile time.
+/**
+ * MapStruct mapper for converting between {@link Track} and {@link TrackEntity} instances.
+ *
+ * @author Jim Kaib
+ */
+@Javadoc("""
+    Mapper that converts between {@link Track} and {@link TrackEntity} instances.
     
     @author Jim Kaib
     """
 )
 @Mapper(
     componentModel = MappingConstants.ComponentModel.SPRING,
-    uses = {TrackMapper.class},
     injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 public interface TrackMapper {

@@ -119,7 +119,7 @@ public class TrackEntity {
     if (other == null || this.getClass() != other.getClass()) {
       return false;
     }
-    final var that = (TrackEntity) other;
+    final TrackEntity that = (TrackEntity) other;
     return new EqualsBuilder()
     .append(this.artist, that.artist)
     .append(this.title, that.title)
@@ -132,7 +132,7 @@ public class TrackEntity {
     return new HashCodeBuilder(19, 37)
         .append(this.artist)
         .append(this.title)
-        .hashCode();
+        .toHashCode();
   }
 
   @Override

@@ -13,8 +13,17 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+/**
+ * Data Transfer Object (DTO) that represents an artist. An artist could be a solo act, a band, or even an orchestra.
+ * This DTO is used to transfer artist data between different layers of the application.
+ *
+ * @author Jim Kaib
+ */
 public class ArtistDto {
 
+  /**
+   * The unique identifier for this artist, not the database surrogate key.
+   */
   private UUID id;
 
   /**

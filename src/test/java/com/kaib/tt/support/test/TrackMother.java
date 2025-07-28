@@ -59,7 +59,7 @@ public class TrackMother {
   /**
    * Builder class for constructing {@link TrackEntity} and {@link Track} instances with customizable properties.
    */
-  static class Builder {
+  public static class Builder {
 
     /**
      * The default artist name for the track.

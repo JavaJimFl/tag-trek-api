@@ -66,6 +66,11 @@ public class ArtistMother {
     return builder().buildDefaultEntity();
   }
 
+  /**
+   * Creates a default {@link CreateArtistRequest} instance with predefined values.
+   *
+   * @return a {@link CreateArtistRequest} instance with default values
+   */
   public static CreateArtistRequest defaultCreateArtistRequest() {
 
     return builder().buildCreateArtistRequest();
@@ -104,7 +109,7 @@ public class ArtistMother {
     /**
      * The test artist ID.
      */
-    private UUID id = TEST_ARTIST_UUID;
+    private final UUID id = TEST_ARTIST_UUID;
 
     /**
      * The test artist ID object.

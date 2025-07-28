@@ -21,11 +21,6 @@ final class ArtistRequestMapperTest {
   private CreateArtistRequest testCreateArtistRequest;
 
   /**
-   * The test Artist instance.
-   */
-  private Artist testArtist;
-
-  /**
    * The unit under test.
    */
   private ArtistRequestMapper uut;
@@ -37,7 +32,6 @@ final class ArtistRequestMapperTest {
   void setUp() {
 
     this.testCreateArtistRequest = ArtistMother.defaultCreateArtistRequest();
-    this.testArtist = ArtistMother.defaultArtist();
 
     this.uut = new ArtistRequestMapperImpl();
   }
@@ -50,7 +44,7 @@ final class ArtistRequestMapperTest {
     final String expected = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$";
 
     // Act.
-    final var artist = this.uut.from(this.testCreateArtistRequest);
+    final Artist artist = this.uut.from(this.testCreateArtistRequest);
     final String actual = artist.artistId().id().toString();
 
     // Assert.
@@ -68,7 +62,7 @@ final class ArtistRequestMapperTest {
     final String expected = this.testCreateArtistRequest.name();
 
     // Act.
-    final var artist = this.uut.from(this.testCreateArtistRequest);
+    final Artist artist = this.uut.from(this.testCreateArtistRequest);
     final String actual = artist.name();
 
     // Assert.
